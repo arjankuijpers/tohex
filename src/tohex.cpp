@@ -19,6 +19,14 @@ printf(
 }
 
 //---------------------------------------------------------------------------
+void ReplaceSymbols(std::string &String_)
+{
+for(std::string::iterator it = String_.begin(); it != String_.end(); ++it) {
+	if(*it == '-') *it = '_';
+	}
+}
+
+//---------------------------------------------------------------------------
 int main(int Argc_, char *Argv_[])
 {
 long Size;
@@ -54,6 +62,7 @@ std::string::reverse_iterator it = std::find_if(FileName.rbegin(), FileName.rend
 std::string::iterator Start = it.base();
 std::string::iterator Last = std::find(Start, FileName.end(), '.');
 FileName.assign(Start, Last);
+ReplaceSymbols(FileName);
 //
 printf("/* This file was generated automatically. Do not edit. */\n"
    "#ifndef DATA_DECLARATION_ONLY\n\n");
